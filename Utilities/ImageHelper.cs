@@ -19,21 +19,18 @@ namespace Utilities
             {
                 return new Tuple<int, int>((int)imageWidth, (int)imageHeight);
             }
-            //else if (imageWidth >= imageHeight)
-         //   {
-                if (imageWidth > fitWidth)
-                    return new Tuple<int, int>((int)fitWidth, (int)Math.Round((fitWidth / imageWidth) * imageHeight));
-                else if (imageHeight > fitHeight)
-                {
-                    return new Tuple<int, int>((int)Math.Round((fitHeight / imageHeight) * imageWidth), (int)fitHeight);
-                }
-         //   }
-         //   else
-         //   {
-                
-         //   }
 
-            throw new Exception();
+            if (imageWidth > fitWidth)
+            {
+                return new Tuple<int, int>((int) fitWidth, (int) Math.Round((fitWidth/imageWidth)*imageHeight));
+            }
+
+            if (imageHeight > fitHeight)
+            {
+                return new Tuple<int, int>((int)Math.Round((fitHeight / imageHeight) * imageWidth), (int)fitHeight);
+            }
+         
+            return new Tuple<int, int>(0, 0);
         }
     }
 }

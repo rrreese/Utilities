@@ -54,5 +54,18 @@ namespace UtilitiesTests
             Assert.AreEqual(point.Item1, 777);
             Assert.AreEqual(point.Item2, 600);
         }
+
+        [TestMethod]
+        public void ZeroCase()
+        {
+            var point = ImageHelper.ResizeDimensions(0, 0, 800, 600);
+            Assert.AreEqual(point.Item1, 0);
+            Assert.AreEqual(point.Item2, 0);
+
+
+            point = ImageHelper.ResizeDimensions(800, 800, 0, 0);
+            Assert.AreEqual(point.Item1, 0);
+            Assert.AreEqual(point.Item2, 0);
+        }
     }
 }
