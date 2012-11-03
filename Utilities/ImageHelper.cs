@@ -13,9 +13,27 @@ namespace Utilities
         /// Based on the dimensions of the old image rectangle, returns the dimensions for a new image rectangle that fits within the new dimensions. 
         /// This will result in a letterboxed rectangle that has the same aspect ratio as the original rectangle.
         /// </summary>
-        public static Tuple<int,int> ResizeDimensions(int imageWidth, int imageHeight, int fitWidth, int fitHeight)
+        public static Tuple<int,int> ResizeDimensions(double imageWidth, double imageHeight, double fitWidth, double fitHeight)
         {
-            throw new NotImplementedException();
+            if (imageWidth <= fitWidth && imageHeight <= fitHeight)
+            {
+                return new Tuple<int, int>((int)imageWidth, (int)imageHeight);
+            }
+            //else if (imageWidth >= imageHeight)
+         //   {
+                if (imageWidth > fitWidth)
+                    return new Tuple<int, int>((int)fitWidth, (int)Math.Round((fitWidth / imageWidth) * imageHeight));
+                else if (imageHeight > fitHeight)
+                {
+                    return new Tuple<int, int>((int)Math.Round((fitHeight / imageHeight) * imageWidth), (int)fitHeight);
+                }
+         //   }
+         //   else
+         //   {
+                
+         //   }
+
+            throw new Exception();
         }
     }
 }

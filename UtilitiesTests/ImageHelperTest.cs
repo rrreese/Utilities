@@ -20,14 +20,14 @@ namespace UtilitiesTests
         {
             var point = ImageHelper.ResizeDimensions(1024, 720, 800, 800);
             Assert.AreEqual(point.Item1, 800);
-            Assert.AreEqual(point.Item2, 563);
+            Assert.AreEqual(point.Item2, 562);
         }
 
         [TestMethod]
         public void YImageDimensionsLargerThenFitDiemnsions()
         {
             var point = ImageHelper.ResizeDimensions(720, 1024, 800, 800);
-            Assert.AreEqual(point.Item1, 563);
+            Assert.AreEqual(point.Item1, 562);
             Assert.AreEqual(point.Item2, 800);
         }
 
@@ -45,6 +45,14 @@ namespace UtilitiesTests
             var point = ImageHelper.ResizeDimensions(1024, 720, 1024, 720);
             Assert.AreEqual(point.Item1, 1024);
             Assert.AreEqual(point.Item2, 720);
+        }
+
+        [TestMethod]
+        public void ImageDimensionsWiderButHeightOutsideFitWidthInsideFit()
+        {
+            var point = ImageHelper.ResizeDimensions(790, 610, 800, 600);
+            Assert.AreEqual(point.Item1, 777);
+            Assert.AreEqual(point.Item2, 600);
         }
     }
 }
