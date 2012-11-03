@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +35,19 @@ namespace Utilities
             return new Point(0, 0);
         }
 
+        public static Image Resize(this Image image, int newWidth, int newHeight, SmoothingMode quality = SmoothingMode.HighQuality)
+        {
+            var newImage = new Bitmap(newWidth, newHeight);
+            using (var gr = Graphics.FromImage(newImage))
+            {
+                gr.SmoothingMode = quality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
+            }
+
+            return newImage;
+        }
 
         public class Point
         {
