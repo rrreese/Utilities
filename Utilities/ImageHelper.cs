@@ -38,12 +38,13 @@ namespace Utilities
         public static Image Resize(this Image image, int newWidth, int newHeight, SmoothingMode quality = SmoothingMode.HighQuality)
         {
             var newImage = new Bitmap(newWidth, newHeight);
-            using (var gr = Graphics.FromImage(newImage))
+
+            using (var graphics = Graphics.FromImage(newImage))
             {
-                gr.SmoothingMode = quality;
-                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                gr.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
+                graphics.SmoothingMode = quality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                graphics.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
             }
 
             return newImage;
