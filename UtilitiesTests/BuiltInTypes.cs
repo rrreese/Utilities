@@ -5,7 +5,7 @@ using Utilities;
 namespace UtilitiesTests
 {
     [TestClass]
-    public class BuiltInTypestest
+    public class BuiltInTypes
     {
         [TestMethod]
         public void EvenTestIsEven()

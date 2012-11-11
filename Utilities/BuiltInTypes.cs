@@ -10,7 +10,7 @@ namespace Utilities
     {
         public static bool IsEven(this int number)
         {
-            return false;
+            return number%2 == 0;
         }
     }
 }
