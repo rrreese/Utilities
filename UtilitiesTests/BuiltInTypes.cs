@@ -36,5 +36,17 @@ namespace UtilitiesTests
 
             Assert.IsFalse((-1000001).IsEven());
         }
+
+        [TestMethod]
+        public void MutliReplace()
+        {
+            Assert.AreEqual("ABCDEF".ReplaceAll("ACE", "x"), "xBxDxF");
+
+            Assert.AreEqual("ABCDEF".ReplaceAll("", "x"), "ABCDEF");
+
+            Assert.AreEqual("ABCDEF".ReplaceAll("M", "x"), "ABCDEF");
+
+            Assert.AreEqual("ABCDEF".ReplaceAll("BE", "xyz"), "AxyzCDxyzF");
+        }
     }
 }
