@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Drawing;
+using System.IO;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Utilities;
 
 namespace UtilitiesTests
@@ -65,6 +67,22 @@ namespace UtilitiesTests
             point = ImageHelper.ResizeDimensions(800, 800, 0, 0);
             Assert.AreEqual(point.X, 0);
             Assert.AreEqual(point.Y, 0);
+        }
+
+        [TestMethod]
+        public void SaveWithQuality()
+        {
+            string testFile = "test.jpg";
+
+            Image image = new Bitmap(500, 500);
+            image.SaveAtQuality(testFile, 100);
+            var fi1 = new FileInfo(testFile);
+
+            Image image2 = new Bitmap(500, 500);
+            image2.SaveAtQuality(testFile, 0);
+            var fi2 = new FileInfo(testFile);
+
+            Assert.IsTrue(fi1.Length > fi2.Length);
         }
     }
 }

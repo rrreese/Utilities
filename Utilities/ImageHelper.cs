@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Utilities
 {
@@ -24,7 +22,7 @@ namespace Utilities
 
             if (imageWidth > fitWidth)
             {
-                return new Point((int) fitWidth, (int) Math.Round((fitWidth/imageWidth)*imageHeight));
+                return new Point((int)fitWidth, (int)Math.Round((fitWidth / imageWidth) * imageHeight));
             }
 
             if (imageHeight > fitHeight)
@@ -50,6 +48,15 @@ namespace Utilities
             return newImage;
         }
 
+        public static void SaveAtQuality(this Image image, string path, int quality)
+        {
+            ImageCodecInfo jgpEncoder = GetImageEncoder(ImageFormat.Jpeg);
+
+            var myEncoderParameters = new EncoderParameters(1);
+            myEncoderParameters.Param[0] = new EncoderParameter(Encoder.Quality, quality);
+            image.Save(path, jgpEncoder, myEncoderParameters);
+        }
+
         public class Point
         {
             public int X { get; set; }
@@ -60,6 +67,14 @@ namespace Utilities
                 X = x;
                 Y = y;
             }
+        }
+
+        private static ImageCodecInfo GetImageEncoder(ImageFormat format)
+        {
+
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            return codecs.FirstOrDefault(codec => codec.FormatID == format.Guid);
         }
     }
 

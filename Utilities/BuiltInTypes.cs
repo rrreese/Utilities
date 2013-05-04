@@ -20,5 +20,11 @@ namespace Utilities
         {
             return matchChars.Aggregate(str, (current, matchChar) => current.Replace(matchChar.ToString(), replacementToken));
         }
+
+        public static int CountString(this string str, string searchString)
+        {
+            var tokens = str.Split(new[] { searchString }, StringSplitOptions.None);
+            return tokens.Count() - 1;
+        }
     }
 }

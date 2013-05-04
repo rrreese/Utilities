@@ -48,5 +48,19 @@ namespace UtilitiesTests
 
             Assert.AreEqual("ABCDEF".ReplaceAll("BE", "xyz"), "AxyzCDxyzF");
         }
+
+        [TestMethod]
+        public void CountStringsTest()
+        {
+            Assert.AreEqual("abcDEFabc".CountString("abc"), 2);
+            Assert.AreEqual("DEFabc".CountString("abc"), 1);
+            Assert.AreEqual("abcDEF".CountString("abc"), 1);
+            Assert.AreEqual("DEFabcHIJ".CountString("abc"), 1);
+            Assert.AreEqual("abcDEFabc!%£$%".CountString("%"), 2);
+
+            Assert.AreEqual("abcDEFabc".CountString("NOT"), 0);
+            Assert.AreEqual("".CountString("NOT"), 0);
+            Assert.AreEqual("abcDEFabc".CountString(""), 0);
+        }
     }
 }
