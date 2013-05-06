@@ -62,5 +62,16 @@ namespace UtilitiesTests
             Assert.AreEqual("".CountString("NOT"), 0);
             Assert.AreEqual("abcDEFabc".CountString(""), 0);
         }
+
+        [TestMethod]
+        public void RemoveAllWhitespaceTest()
+        {
+            Assert.AreEqual("abcd", "abcd".RemoveAllWhiteSpace());
+            Assert.AreEqual("abcd", "ab cd".RemoveAllWhiteSpace());
+            Assert.AreEqual("abcd", " ab cd ".RemoveAllWhiteSpace());
+            Assert.AreEqual("abcd", ("abcd" + Environment.NewLine).RemoveAllWhiteSpace());
+            Assert.AreEqual("abcd", "ab\tcd".RemoveAllWhiteSpace());
+            Assert.AreEqual("abcd", "ab\n\f\v\rcd".RemoveAllWhiteSpace());
+        }
     }
 }

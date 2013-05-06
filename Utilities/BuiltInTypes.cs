@@ -21,10 +21,18 @@ namespace Utilities
             return matchChars.Aggregate(str, (current, matchChar) => current.Replace(matchChar.ToString(), replacementToken));
         }
 
+        /// <summary>
+        /// Returns the count of instances of searchString found in the current string
+        /// </summary>        
         public static int CountString(this string str, string searchString)
         {
             var tokens = str.Split(new[] { searchString }, StringSplitOptions.None);
             return tokens.Count() - 1;
+        }
+
+        public static string RemoveAllWhiteSpace(this string str)
+        {
+            return new string(str.ToCharArray().Where(c => !char.IsWhiteSpace(c)).ToArray());
         }
     }
 }
